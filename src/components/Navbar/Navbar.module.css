@@ -1,0 +1,29 @@
+.navbar{
+    background-color: aqua;
+    display:flex;
+    padding: 0% 20%;
+    justify-content: space-between;
+  
+  }
+  .ecommerce{
+      font-size: 3.2rem;
+      font-weight: bold;    
+      list-style: none;
+      gap: 2rem; 
+      font-weight: 500;
+  }
+  .cart{
+      font-weight:1.2rem;
+      
+  }
+  .label{
+      color: red;
+      font-weight: 500;
+  }
+  
+.navmenu {
+    display:flex;
+    list-style: none;
+     gap: 2rem; 
+     font-weight: 500;
+}
