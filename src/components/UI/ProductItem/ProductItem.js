@@ -1,29 +1,58 @@
 import React from "react";
 import ProductForm from "../../ProductForm/ProductForm";
-import { useContext } from "react";
+import { useContext ,useEffect} from "react";
 import CartContext from "../../../store/cart-context";
 const ProductItem=(props)=>{
    const cartCtx=useContext(CartContext);
   // console.log(cartCtx)
    const addToCartHandler=amount=>{
-    cartCtx.addItem({
+   // console.log(cartCtx.items)
+   cartCtx.addItem({
+    id:props.id,
+    name:props.name,
+    price:props.price,
+    amount:amount,
+    img:props.img
+})
+ 
+fetch("https://datatofirebasebackend-default-rtdb.firebaseio.com/dataToFirebaseBackend.json",{
+    method:"POST",
+    body:JSON.stringify( {
         id:props.id,
         name:props.name,
         price:props.price,
         amount:amount,
-        productImage:<img src={props.img}/>
-    })
+        img:props.img
+    }) ,
+    headers:{
+      "Content-Type":"application/json"
+    }
+}).then((res)=>{
+  return res.json().then((data)=>{
+      console.log( "dataToBackend from perduct item",data)
+  })
+}) 
+   
+  
+  
    }
+
+
+
+
+
+
+   
 
 return(
     <>
      <li>
         <div>
-             {props.productImage}
+             {props.img}
         </div>
         <div>
         <h3>{props.name}</h3>
-         <h3>Rs {props.price}</h3>
+         <h3>$ {props.price}</h3>
          
         </div>
         <div>

@@ -18,12 +18,13 @@ import PasswordChanged from './components/pages/PasswordChanged';
 
 
 
+
 function App(props) {
-  async function addUserDataHandler(movie ){
+  async function addUserDataHandler(userData){
   
     const response=await fetch('https://adduserinput-default-rtdb.firebaseio.com/userData.json',{
          method:'POST',
-         body:JSON.stringify(movie),
+         body:JSON.stringify(userData),
          headers:{
           'Content-Type':'application/json'
          }
@@ -40,6 +41,8 @@ function App(props) {
     
   const [cartIsShown,setCartIsShown]=useState(false)
   const showCartHandler=()=>{
+  
+   
       setCartIsShown(true)
   }
   const hideCartHandler=()=>{
@@ -50,6 +53,7 @@ function App(props) {
     
   
    <BrowserRouter>
+ 
   
    <Navbar onShowCart={showCartHandler}/>
    
@@ -87,6 +91,7 @@ function App(props) {
   
  
    </CartProvider>;
+     
 }
 
 export default App;

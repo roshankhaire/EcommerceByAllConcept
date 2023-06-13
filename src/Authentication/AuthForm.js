@@ -3,12 +3,12 @@ import classes from './AuthForm.module.css'
 import AuthContext from "../store/auth-context";
 import { useHistory } from "react-router-dom";
 const AuthForm=()=>{
-     const history=useHistory()
+    const history=useHistory()
     const emailInputRef=useRef()
     const passwordInputRef=useRef()
     const [isLogin, setIsLogin] = useState(true);
     const [isLoading,setIsLoading]=useState(false)
-          const authCtx = useContext(AuthContext)
+         const authCtx = useContext(AuthContext)
     
     const switchAuthModeHandler = (event) => {
         event.preventDefault()
@@ -19,48 +19,47 @@ const AuthForm=()=>{
         const enteredEmail=emailInputRef.current.value;
         const enteredPassword=passwordInputRef.current.value;
         setIsLoading(true);
-        let url;
+        let url
         if(isLogin){
-          url='https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAZO0aVFf0AHN4pLI0O-bmpqCeBdon-D9A'
+         url="https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key= AIzaSyC55DzSI2j7o_4bu-W2AL-BhjbyUQeQSJc"
         }
         else{
-           
-         url='https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAZO0aVFf0AHN4pLI0O-bmpqCeBdon-D9A'
-        }
-        fetch(url,
-            {
-              method:'POST',
-              body:JSON.stringify({
-                  email:enteredEmail,
-                  password:enteredPassword,
-                  returnSecureToken:true
-              }),
-              headers:{
-                  'Content-Type':'application/json'
-              }
-            }).then(res =>{
-              setIsLoading(false)
-              if(res.ok){
-                    return res.json()
-              }
-              else{
-                  return  res.json().then(data=>{
-                      let errorMessage='Authentication Failed';
-                      if(data && data.error && data.error.message){
-                          errorMessage=data.error.message
-                      }
-                      alert(errorMessage)
-                      throw new Error(errorMessage)
-                    
-                  })
-              }
-  
-            }).then(data=>{
-                 authCtx.login(data.idToken)
+          url="https://identitytoolkit.googleapis.com/v1/accounts:signUp?key= AIzaSyC55DzSI2j7o_4bu-W2AL-BhjbyUQeQSJc"
+        } 
+        
+        fetch(url,{
+          method:'POST',
+          body:JSON.stringify({
+              email:enteredEmail,
+              password:enteredPassword,
+              returnSecureToken:true
+          }),
+          headers:{
+              "Content-Type":"application/json"
+          }
+      }).then(res=>{
+          setIsLoading(false)
+          if(res.ok){
+               return res.json()
+          }
+          else{
+             return  res.json().then(data=>{
+                  let errorMessage="authentication Fail"
+                    if(data && data.error && data.error.message){
+                   errorMessage=data.error.message
+               }
+                alert(errorMessage)
+                  //throw new Error(errorMessage)
+              })
+          }
+      })      .then((data)=>{
+                authCtx.login(data.idToken)
                  history.replace("/product")
-            }).catch((err=>[
+           }).catch((err=>{
                   alert(err.message)
-            ]))
+        }))
+    
+//  
           }
       
     
@@ -74,7 +73,7 @@ const AuthForm=()=>{
             </div>
             <div className={classes.control}>
                 <label htmlFor="password">Your Password</label>
-                <input type="pasword" id="password" required ref={passwordInputRef}/>
+                <input type="password" id="password" required ref={passwordInputRef}/>
             </div>
             <div className={classes.actions}>
            {!isLoading && <button> {isLogin ?'Login' :'Create account'}</button>}

@@ -1,5 +1,5 @@
 import CartContext from "./cart-context";
-import { useReducer, useState } from "react";
+import {  useEffect, useReducer, useState } from "react";
 
 
 
@@ -8,18 +8,18 @@ const defaultState={
     totalAmount:0
 }
 const cartReducer=(state,action)=>{
-    //console.log(state.items)
-     //console.log(action)
+  //console.log("stateItems",state.items)
+  // console.log("insiadeaction",action)
      
     if(action.type==="ADD"){
         const updatedTotalAmount=state.totalAmount +
          action.item.price *action.item.amount
-      //console.log(state.items)
+    // console.log("stateItems",state.items)
         const existingCartItemIndex=state.items.findIndex((item)=>
         item.id===action.item.id)
-       // console.log(existingCartItemIndex)
+      // console.log("insideExistingCartItemIndex",existingCartItemIndex)
         const existingCartItem=state.items[existingCartItemIndex]
-      // console.log(existingCartItem)
+      //console.log("insideExistingCartItem",existingCartItem)
        let updatedItems
        if(existingCartItem){
         const  updatedItem={
@@ -47,15 +47,15 @@ const cartReducer=(state,action)=>{
         item.id===action.id
         )
         
-        console.log(existingCartItemIndex)
+        //console.log("inside existingCartItemIndex",existingCartItemIndex)
         const existingItem=state.items[existingCartItemIndex];
-        console.log(existingItem)
+        //console.log("insideExistingItem",existingItem)
         const updatedTotalAmount=state.totalAmount-existingItem.price
         let updatedItems
         if(existingItem.amount===1){
             updatedItems=state.items.filter((item)=>
             item.id!==action.id)
-           console.log(updatedItems)
+          // console.log(updatedItems)
 
         }
         else{
@@ -74,9 +74,13 @@ const cartReducer=(state,action)=>{
     }
 return defaultState;
 
+
 }
+
 const CartProvider=(props)=>{
+   
     const [cartState,dispatchCartAction]=useReducer(cartReducer,defaultState)
+    
     
     const addItemToCartHandler=(item)=>{
         
@@ -85,12 +89,47 @@ const CartProvider=(props)=>{
     const removeItemFromCartHandler=(id)=>{
         dispatchCartAction({type:"REMOVE",id:id})
     }
+   
+    
+      
+       
+   
+   
+         
+    
+    // fetch("https://datatobackend-default-rtdb.firebaseio.com/dataToBackend.json",{
+    //       method:"POST",
+    //       body:JSON.stringify(cartState.items) ,
+    //       headers:{
+    //         "Content-Type":"application/json"
+    //       }
+    // }).then((res)=>{
+    //     return res.json().then((data)=>{
+    //         console.log(data)
+    //     })
+    // }) 
+        
+   
+
+
+    
+       
+        
+          
+    
+  
+     
+       
     const cartContext={
+      
         items:cartState.items,
         totalAmount:cartState.totalAmount,
         addItem:addItemToCartHandler,
         removeItem:removeItemFromCartHandler,
     }
+    //console.log(cartState.items)
+  
+  
 return<CartContext.Provider value={cartContext}>
     {props.children}
 </CartContext.Provider>

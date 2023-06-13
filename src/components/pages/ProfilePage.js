@@ -9,7 +9,7 @@ const ProfilePage=()=>{
   const submitHandler=(event)=>{
        event.preventDefault();
        const enteredNewPassword=newPasswordInputRef.current.value
-       fetch('https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyAZO0aVFf0AHN4pLI0O-bmpqCeBdon-D9A',{
+       fetch('https://identitytoolkit.googleapis.com/v1/accounts:update?key= AIzaSyC55DzSI2j7o_4bu-W2AL-BhjbyUQeQSJc',{
         method:'POST',
         body:JSON.stringify({
           idToken:authCtx.token,
