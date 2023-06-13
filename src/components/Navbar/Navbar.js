@@ -33,14 +33,14 @@ const Navbar=(props)=>{
             <div>
                 <ul className={classes.navmenu} >
                     <li><NavLink to="/">Home</NavLink></li>
-                    <li><NavLink to="/product">Product</NavLink></li>
+                    { isLoggedIn && <li><NavLink to="/product">Product</NavLink></li>}
                     <li><NavLink to="/aboutUs">About Us</NavLink></li>
                     <li><NavLink to="contactus">Contact Us</NavLink></li>
                 </ul>
             </div>
           
             <div className={classes.cart}>
-              <FaShoppingCart onClick={props.onShowCart}/>
+              <FaShoppingCart onClick={props.onShowCart} />
                <label className={classes.label}>{noOfCartitems}</label>
               
             </div>
@@ -50,6 +50,7 @@ const Navbar=(props)=>{
                  
                 {!isLoggedIn && ( <li><NavLink to="/auth">login</NavLink></li>)}
                 {isLoggedIn && (<li><NavLink to="/profile">Profile</NavLink></li> )}
+                {}
                 {isLoggedIn && ( <li><button onClick={logoutHandler}  >Logout</button></li>)}
                 </ul>
               </nav>
