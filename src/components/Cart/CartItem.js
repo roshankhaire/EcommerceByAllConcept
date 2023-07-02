@@ -5,7 +5,7 @@ import CartContext from "../../store/cart-context";
 import CartData from "./CartData";
 
 const CartItem = (props) => {
-    const price=`$${props.price}`
+   const price=`$${props.price}`
    
       
       

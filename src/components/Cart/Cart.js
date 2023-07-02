@@ -20,12 +20,52 @@ const Cart=(props)=>{
     }
     const cartAddHandler=(item)=>{
         
+        
           cartCtx.addItem({...item,amount:1})
           
     }
 
         
+  if(isLoggedIn){
+   
+   // const isLoggedIn=auth.isLoggedIn
+    
   
+   
+  // useEffect(()=>{
+   
+    let cartDataArray=[];
+    fetch('https://datatofirebasebackend-default-rtdb.firebaseio.com/dataToFirebaseBackend.json',{
+        method:'GET',
+        
+        headers:{
+          'Content-Type':'application/json'
+        }
+
+       }).then(res=>{
+           return res.json().then((data)=>{
+                 console.log("dataFromBackend",data)
+                
+              for(let key in data){
+                cartDataArray.push({
+                    key:key,
+                    amount:data[key].amount,
+                    price:data[key].price,
+                    img:data[key].img,
+                    name:data[key].name,
+                    id:data[key].id
+                })
+              }
+                return cartDataArray
+         
+        
+           })
+       })
+       console.log( 'insie in cartData fromProductList',cartDataArray)
+       cartDataArray.forEach(element => {
+       return   cartCtx.addItem( element)
+    });
+  }
     
    const cartItems=cartCtx.items.map((item)=>
 

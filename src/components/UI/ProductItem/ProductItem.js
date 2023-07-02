@@ -29,7 +29,7 @@ fetch("https://datatofirebasebackend-default-rtdb.firebaseio.com/dataToFirebaseB
     }
 }).then((res)=>{
   return res.json().then((data)=>{
-      console.log( "dataToBackend from perduct item",data)
+      console.log( "dataToBackend from product item",data)
   })
 }) 
    

@@ -14,6 +14,14 @@ const Navbar=(props)=>{
   const authCtx=useContext(AuthContext)
   const isLoggedIn=authCtx.isLoggedIn
  
+          //  console.log(cartDataArray)
+              // cartDataArray
+       
+      
+      
+
+  
+
   let noOfCartitems=cartCtx.items.reduce((curNum,item)=>{
     return curNum + item.amount
   },0)

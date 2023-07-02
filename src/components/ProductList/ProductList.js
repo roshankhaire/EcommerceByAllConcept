@@ -36,7 +36,7 @@ const ProductList=(props)=>{
     
     const cartCtx=useContext(CartContext)
    
-  // useEffect(()=>{
+   useEffect(()=>{
    
     let cartDataArray=[];
     fetch('https://datatofirebasebackend-default-rtdb.firebaseio.com/dataToFirebaseBackend.json',{
@@ -48,7 +48,7 @@ const ProductList=(props)=>{
 
        }).then(res=>{
            return res.json().then((data)=>{
-                 console.log("dataFromBackend",data)
+                console.log("dataFromBackend",data)
                 
               for(let key in data){
                 cartDataArray.push({
@@ -58,19 +58,26 @@ const ProductList=(props)=>{
                     img:data[key].img,
                     name:data[key].name,
                     id:data[key].id
-                })
-              }
-                return cartDataArray
-         
+              })
+              } 
+             
+
+             // console.log(cartDataArray)
+               
+                console.log( 'insie in cartDataArray fromProductList',cartDataArray.id)
+                
+              cartDataArray.forEach(element => 
+                // 
+        // console.log(element)
+       cartCtx.addItem(element)
+             
+           );
         
            })
        })
-       console.log( 'insie in cartData fromProductList',cartDataArray)
-       cartDataArray.forEach(element => {
-        cartCtx.addItem( element)
-    });
+    
        
-   //},[])
+   },[])
  
  
          

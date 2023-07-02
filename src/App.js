@@ -15,11 +15,17 @@ import AuthForm from './Authentication/AuthForm';
 import HomePageLogin from './components/pages/HomePageLogin';
 import ProfilePage from './components/pages/ProfilePage';
 import PasswordChanged from './components/pages/PasswordChanged';
-
+import CartContext from './store/cart-context';
+import AuthContext from './store/auth-context';
+import { useContext } from 'react';
 
 
 
 function App(props) {
+  const auth=useContext(AuthContext)
+  // const isLoggedIn=auth.isLoggedIn
+   
+   const cartCtx=useContext(CartContext)
   async function addUserDataHandler(userData){
   
     const response=await fetch('https://adduserinput-default-rtdb.firebaseio.com/userData.json',{
@@ -41,9 +47,14 @@ function App(props) {
     
   const [cartIsShown,setCartIsShown]=useState(false)
   const showCartHandler=()=>{
-  
-   
-      setCartIsShown(true)
+
+    setCartIsShown(true)
+    
+   // useEffect(()=>{
+    
+    
+       
+     
   }
   const hideCartHandler=()=>{
     setCartIsShown(false)
