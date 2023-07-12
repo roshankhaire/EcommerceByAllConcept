@@ -39,7 +39,7 @@ const ProductList=(props)=>{
    useEffect(()=>{
    
     let cartDataArray=[];
-    fetch('https://datatofirebasebackend-default-rtdb.firebaseio.com/dataToFirebaseBackend.json',{
+    fetch('https://ecommerceappdata-default-rtdb.firebaseio.com/dataToFirebaseBackend.json',{
         method:'GET',
         
         headers:{
@@ -64,7 +64,7 @@ const ProductList=(props)=>{
 
              // console.log(cartDataArray)
                
-                console.log( 'insie in cartDataArray fromProductList',cartDataArray.id)
+                console.log( 'insie in cartDataArray fromProductList',cartDataArray)
                 
               cartDataArray.forEach(element => 
                 // 

@@ -15,7 +15,7 @@ const ProductItem=(props)=>{
     img:props.img
 })
  
-fetch("https://datatofirebasebackend-default-rtdb.firebaseio.com/dataToFirebaseBackend.json",{
+fetch("https://ecommerceappdata-default-rtdb.firebaseio.com/dataToFirebaseBackend.json",{
     method:"POST",
     body:JSON.stringify( {
         id:props.id,

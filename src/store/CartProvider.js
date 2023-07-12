@@ -1,5 +1,5 @@
 import CartContext from "./cart-context";
-import {  useEffect, useReducer, useState } from "react";
+import {  useReducer} from "react";
 
 
 

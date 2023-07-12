@@ -8,6 +8,7 @@ import AuthContext from "../../store/auth-context";
 
 
 const Cart=(props)=>{
+  console.log("inside cart")
     const auth=useContext(AuthContext)
     const isLoggedIn=auth.isLoggedIn
     
@@ -25,58 +26,25 @@ const Cart=(props)=>{
           
     }
 
-        
-  if(isLoggedIn){
+     console.log("hi",cartCtx)   
+ 
    
-   // const isLoggedIn=auth.isLoggedIn
-    
+   
   
-   
-  // useEffect(()=>{
-   
-    let cartDataArray=[];
-    fetch('https://datatofirebasebackend-default-rtdb.firebaseio.com/dataToFirebaseBackend.json',{
-        method:'GET',
-        
-        headers:{
-          'Content-Type':'application/json'
-        }
-
-       }).then(res=>{
-           return res.json().then((data)=>{
-                 console.log("dataFromBackend",data)
-                
-              for(let key in data){
-                cartDataArray.push({
-                    key:key,
-                    amount:data[key].amount,
-                    price:data[key].price,
-                    img:data[key].img,
-                    name:data[key].name,
-                    id:data[key].id
-                })
-              }
-                return cartDataArray
-         
-        
-           })
-       })
-       console.log( 'insie in cartData fromProductList',cartDataArray)
-       cartDataArray.forEach(element => {
-       return   cartCtx.addItem( element)
-    });
-  }
     
-   const cartItems=cartCtx.items.map((item)=>
-
-  <CartItem key={item.id}
-  name={item.name}
-  amount={item.amount}
-  price={item.price}
-  img={item.img}
-  onRemove={cartItemRemoveHandler.bind(null,item.id)}
-  onAdd={cartAddHandler.bind(null,item)}/>
-    )
+     const cartItems = cartCtx.items.map((item) => {
+      return (
+        <CartItem
+          key={item.id}
+          name={item.name}
+          amount={item.amount}
+          price={item.price}
+          img={item.img.props.src}
+          onRemove={cartItemRemoveHandler.bind(null, item.id)}
+          onAdd={cartAddHandler.bind(null, item)}
+        />
+      );
+       } );
     
 return(
     <Modal onClose={props.onClose}>
