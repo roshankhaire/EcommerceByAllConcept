@@ -97,17 +97,7 @@ const CartProvider=(props)=>{
    
          
     
-    // fetch("https://datatobackend-default-rtdb.firebaseio.com/dataToBackend.json",{
-    //       method:"POST",
-    //       body:JSON.stringify(cartState.items) ,
-    //       headers:{
-    //         "Content-Type":"application/json"
-    //       }
-    // }).then((res)=>{
-    //     return res.json().then((data)=>{
-    //         console.log(data)
-    //     })
-    // }) 
+   
         
    
 

@@ -28,7 +28,7 @@ function App(props) {
    const cartCtx=useContext(CartContext)
   async function addUserDataHandler(userData){
   
-    const response=await fetch('https://adduserinput-default-rtdb.firebaseio.com/userData.json',{
+    const response=await fetch('https://contactdata-9f427-default-rtdb.firebaseio.com//userData.json',{
          method:'POST',
          body:JSON.stringify(userData),
          headers:{

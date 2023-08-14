@@ -39,7 +39,7 @@ const ProductList=(props)=>{
    useEffect(()=>{
    
     let cartDataArray=[];
-    fetch('https://ecommerceappdata-default-rtdb.firebaseio.com/dataToFirebaseBackend.json',{
+    fetch("https://ecocebyal2-default-rtdb.firebaseio.com/dataToFirebaseBackend.json",{
         method:'GET',
         
         headers:{

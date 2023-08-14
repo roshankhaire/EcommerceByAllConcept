@@ -14,8 +14,7 @@ const Navbar=(props)=>{
   const authCtx=useContext(AuthContext)
   const isLoggedIn=authCtx.isLoggedIn
  
-          //  console.log(cartDataArray)
-              // cartDataArray
+         
        
       
       
@@ -40,9 +39,9 @@ const Navbar=(props)=>{
             <span className={classes.ecommerce}>Ecommerce Website</span>
             <div>
                 <ul className={classes.navmenu} >
-                    <li><NavLink to="/">Home</NavLink></li>
+                    <li><NavLink to="/" >Home</NavLink></li>
                     { isLoggedIn && <li><NavLink to="/product">Product</NavLink></li>}
-                    <li><NavLink to="/aboutUs">About Us</NavLink></li>
+                    <li><NavLink to="/aboutUs"  >About Us</NavLink></li>
                     <li><NavLink to="contactus">Contact Us</NavLink></li>
                 </ul>
             </div>

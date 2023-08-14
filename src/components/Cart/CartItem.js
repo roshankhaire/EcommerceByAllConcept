@@ -2,7 +2,7 @@ import classes from "./CartItem.module.css"
 
 import { useContext } from "react";
 import CartContext from "../../store/cart-context";
-import CartData from "./CartData";
+
 
 const CartItem = (props) => {
    const price=`$${props.price}`

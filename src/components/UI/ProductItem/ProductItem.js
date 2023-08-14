@@ -1,3 +1,4 @@
+
 import React from "react";
 import ProductForm from "../../ProductForm/ProductForm";
 import { useContext ,useEffect} from "react";
@@ -15,7 +16,7 @@ const ProductItem=(props)=>{
     img:props.img
 })
  
-fetch("https://ecommerceappdata-default-rtdb.firebaseio.com/dataToFirebaseBackend.json",{
+fetch("https://ecocebyal2-default-rtdb.firebaseio.com/dataToFirebaseBackend.json",{
     method:"POST",
     body:JSON.stringify( {
         id:props.id,

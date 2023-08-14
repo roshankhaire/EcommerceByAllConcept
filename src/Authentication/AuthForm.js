@@ -9,10 +9,11 @@ const AuthForm=()=>{
     const [isLogin, setIsLogin] = useState(true);
     const [isLoading,setIsLoading]=useState(false)
          const authCtx = useContext(AuthContext)
-    
+        
     const switchAuthModeHandler = (event) => {
         event.preventDefault()
         setIsLogin((prevState) => !prevState);
+          
       };
       const submitHandler=(event)=>{
         event.preventDefault();
