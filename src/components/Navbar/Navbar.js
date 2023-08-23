@@ -13,28 +13,29 @@ const Navbar=(props)=>{
   const cartCtx=useContext(CartContext)
   const authCtx=useContext(AuthContext)
   const isLoggedIn=authCtx.isLoggedIn
- 
-         
-       
-      
-      
 
-  
+
+
+
+
+
+
 
   let noOfCartitems=cartCtx.items.reduce((curNum,item)=>{
     return curNum + item.amount
   },0)
 
   const logoutHandler=()=>{
+       cartCtx.clearCart();
     authCtx.logout()
     history.replace("auth")
   }
-  
-  
-  
+
+
+
     return(
         <Fragment>
-           
+
         <div className={classes.navbar}>
             <span className={classes.ecommerce}>Ecommerce Website</span>
             <div>
@@ -45,16 +46,16 @@ const Navbar=(props)=>{
                     <li><NavLink to="contactus">Contact Us</NavLink></li>
                 </ul>
             </div>
-          
+
             <div className={classes.cart}>
               <FaShoppingCart onClick={props.onShowCart} />
                <label className={classes.label}>{noOfCartitems}</label>
-              
+
             </div>
             <div>
               <nav>
                 <ul>
-                 
+
                 {!isLoggedIn && ( <li><NavLink to="/auth">login</NavLink></li>)}
                 {isLoggedIn && (<li><NavLink to="/profile">Profile</NavLink></li> )}
                 {}

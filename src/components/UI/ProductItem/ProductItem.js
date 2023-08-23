@@ -15,7 +15,9 @@ const ProductItem=(props)=>{
     amount:amount,
     img:props.img
 })
- 
+
+       const email = localStorage.getItem('email');
+
 fetch("https://ecocebyal2-default-rtdb.firebaseio.com/dataToFirebaseBackend.json",{
     method:"POST",
     body:JSON.stringify( {
@@ -23,7 +25,8 @@ fetch("https://ecocebyal2-default-rtdb.firebaseio.com/dataToFirebaseBackend.json
         name:props.name,
         price:props.price,
         amount:amount,
-        img:props.img
+        img:props.img,
+        email:email
     }) ,
     headers:{
       "Content-Type":"application/json"
@@ -32,10 +35,10 @@ fetch("https://ecocebyal2-default-rtdb.firebaseio.com/dataToFirebaseBackend.json
   return res.json().then((data)=>{
       console.log( "dataToBackend from product item",data)
   })
-}) 
-   
-  
-  
+})
+
+
+
    }
 
 
@@ -43,7 +46,7 @@ fetch("https://ecocebyal2-default-rtdb.firebaseio.com/dataToFirebaseBackend.json
 
 
 
-   
+
 
 return(
     <>
@@ -54,14 +57,14 @@ return(
         <div>
         <h3>{props.name}</h3>
          <h3>$ {props.price}</h3>
-         
+
         </div>
         <div>
             <ProductForm onAddToCart={addToCartHandler}/>
         </div>
     </li>
     </>
-   
+
 )
 }
 export default ProductItem
