@@ -3,23 +3,23 @@ import './App.css';
 import { BrowserRouter,Route } from "react-router-dom"
 import home from "./assets/HomePage.png"
 import Navbar from './components/Navbar/Navbar';
-import HomePage from './components/pages/HomePage';
-import ProductList from './components/ProductList/ProductList';
+import { Suspense } from 'react';
 import { Switch } from 'react-router-dom/cjs/react-router-dom.min';
 import Cart from './components/Cart/Cart';
-import { Fragment, useState } from 'react';
+import { Fragment, lazy, useState } from 'react';
 import CartProvider from './store/CartProvider';
-import AboutUs from './components/pages/AboutUs';
-import ContactUs from './components/pages/ContactUs';
-import AuthForm from './Authentication/AuthForm';
 import HomePageLogin from './components/pages/HomePageLogin';
-import ProfilePage from './components/pages/ProfilePage';
-import PasswordChanged from './components/pages/PasswordChanged';
 import CartContext from './store/cart-context';
 import AuthContext from './store/auth-context';
 import { useContext } from 'react';
-
-
+import React from "react"
+const HomePage=lazy(()=>import('./components/pages/HomePage'))
+const ProductList=lazy(()=>import('./components/ProductList/ProductList'))
+const ContactUs=lazy(()=>import('./components/pages/ContactUs'))
+const AboutUs=lazy(()=>import('./components/pages/AboutUs'))
+const AuthForm=lazy(()=>import('./Authentication/AuthForm'))
+const ProfilePage=lazy(()=>import('./components/pages/ProfilePage'))
+const PasswordChanged=lazy(()=>import('./components/pages/PasswordChanged'))
 
 function App(props) {
   const auth=useContext(AuthContext)
@@ -28,7 +28,7 @@ function App(props) {
    const cartCtx=useContext(CartContext)
   async function addUserDataHandler(userData){
   
-    const response=await fetch('https://contactdata-9f427-default-rtdb.firebaseio.com//userData.json',{
+    const response=await fetch('https://contactusdat-default-rtdb.firebaseio.com/userData.json',{
          method:'POST',
          body:JSON.stringify(userData),
          headers:{
@@ -67,7 +67,7 @@ function App(props) {
  
   
    <Navbar onShowCart={showCartHandler}/>
-   
+   <Suspense fallback={<p>Loading...</p>}>
    <Switch>
    <Route exact path="/">
      <HomePage/>
@@ -93,7 +93,7 @@ function App(props) {
    </Route>
    
    </Switch>
- 
+   </Suspense>
    
    </BrowserRouter>
   
